@@ -55,6 +55,11 @@ public class Model_BL extends AbstractTableModel {
         return colNames.length;
     }
 
+    public void update() {
+        this.fireTableDataChanged();
+        this.fireTableCellUpdated(0, liste.size());
+    }
+
     @Override
     public Object getValueAt(int row, int col) {
         Person p = liste.get(row);

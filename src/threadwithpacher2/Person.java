@@ -53,7 +53,8 @@ public class Person {
     }
 
     public double getMoney() {
-        return moneyContainer.getMoney();
+        double x = 50;
+        return x; //moneyContainer.getMoney();
     }
 
     public void setMoney(double money) {

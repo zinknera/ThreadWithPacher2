@@ -92,6 +92,7 @@ public class GUI extends javax.swing.JFrame {
         if (hinzu.getIsKorrekt()) {
             Person p = hinzu.getPerson();
             model.add(p);
+            model.update();
         }
     }
 
