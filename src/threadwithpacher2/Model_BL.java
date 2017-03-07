@@ -59,7 +59,7 @@ public class Model_BL extends AbstractTableModel {
           case 1 : return p.getNn();
           case 2 : return p.getGebdate();
           case 3 : return p.getAdresse();
-          case 4 : return p.get
+          case 4 : return p.getGender();
       }
      throw new UnsupportedOperationException("Fehler: getValueAt ");
     }
@@ -89,7 +89,7 @@ public class Model_BL extends AbstractTableModel {
                 BufferedWriter bwriter = new BufferedWriter(new FileWriter(path));
                 for (int i = 0; i < liste.size(); i++) {
                 Person p = liste.get(i);
-                String line =p.getVn()+";"+p.getNn()+";"+p.getGebdate()+";"+g.get+";"+p.getAdresse();
+                String line =p.getVn()+";"+p.getNn()+";"+p.getGebdate()+";"+p.getGender()+";"+p.getAdresse();
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);

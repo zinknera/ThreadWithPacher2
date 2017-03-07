@@ -5,6 +5,9 @@
  */
 package threadwithpacher2;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 
 /**
@@ -15,20 +18,31 @@ public class Person {
     
     private String vn;
     private String nn;
-    private Date gebdate;
+    private LocalDate gebdate;
     private String adresse;
 
+    private Gender gender;
 
-    
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     
     private enum Gender {
         MALE, FEMALE
     }
+    
 
-    public Person(String vn, String nn, Date gebdate, String adresse) {
+    public Person(String vn, String nn, String gebdate, String adresse) {
         this.vn = vn;
         this.nn = nn;
-        this.gebdate = gebdate;
+        
+        this.gebdate = LocalDate.parse(gebdate, DateTimeFormatter.ISO_DATE);
+        
         this.adresse = adresse;
     }
 
@@ -48,13 +62,15 @@ public class Person {
         this.nn = nn;
     }
 
-    public Date getGebdate() {
+    public LocalDate getGebdate() {
         return gebdate;
     }
 
-    public void setGebdate(Date gebdate) {
+    public void setGebdate(LocalDate gebdate) {
         this.gebdate = gebdate;
     }
+
+   
 
     public String getAdresse() {
         return adresse;
