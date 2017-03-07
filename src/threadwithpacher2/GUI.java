@@ -21,7 +21,7 @@ public class GUI extends javax.swing.JFrame {
     private final String path = System.getProperty("user.dir") + File.separator + "src" + File.separator;
 
     public GUI() {
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setSize(500, 700);
         model = new Model_BL();
         JPanel hautpanel = new JPanel();
@@ -31,12 +31,16 @@ public class GUI extends javax.swing.JFrame {
         table.setModel(model);
         scroll.setViewportView(table);
         hautpanel.add(scroll);
+<<<<<<< HEAD
         getContentPane().add(hautpanel);
     }
 
     public void einlesentxt() {
 
         model.einlesenTxt(path + "Personendaten.txt");
+=======
+        this.getContentPane().add(hautpanel);
+>>>>>>> 3d03bdbc5b2fba86846bc97d9f0577cf72e71256
         
     }
 
