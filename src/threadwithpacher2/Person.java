@@ -52,6 +52,14 @@ public class Person {
         this.vn = vn;
     }
 
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
     public String getNn() {
         return nn;
     }
