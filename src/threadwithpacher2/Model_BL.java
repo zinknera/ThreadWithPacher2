@@ -119,6 +119,7 @@ public class Model_BL extends AbstractTableModel {
                 for (int i = 0; i < liste.size(); i++) {
                     Person p = liste.get(i);
                     String line = p.getVn() + ";" + p.getNn() + ";" + p.getGebdate() + ";" + p.getGender() + ";" + p.getAdresse() + ";" + p.getMoney();
+                    bwriter.write("test");
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);
