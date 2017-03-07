@@ -19,7 +19,7 @@ public class GUI extends javax.swing.JFrame {
     private Model_BL model;
     
     public GUI() {
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setSize(500, 700);
         model = new Model_BL();
         JPanel hautpanel = new JPanel();
@@ -30,7 +30,7 @@ public class GUI extends javax.swing.JFrame {
         scroll.setViewportView(table);
         
         hautpanel.add(scroll);
-        getContentPane().add(hautpanel);
+        this.getContentPane().add(hautpanel);
         
     }
 

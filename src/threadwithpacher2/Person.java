@@ -7,8 +7,6 @@ package threadwithpacher2;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Date;
 
 /**
  *
@@ -20,6 +18,7 @@ public class Person {
     private String nn;
     private LocalDate gebdate;
     private String adresse;
+    double money;
 
     private Gender gender;
 
@@ -37,13 +36,12 @@ public class Person {
     }
     
 
-    public Person(String vn, String nn, String gebdate, String adresse) {
+    public Person(String vn, String nn, String gebdate, String adresse, double money) {
         this.vn = vn;
         this.nn = nn;
-        
         this.gebdate = LocalDate.parse(gebdate, DateTimeFormatter.ISO_DATE);
-        
         this.adresse = adresse;
+        this.money = money;
     }
 
     public String getVn() {
