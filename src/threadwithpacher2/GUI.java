@@ -33,6 +33,7 @@ public class GUI extends javax.swing.JFrame {
         hautpanel.add(scroll);
 
         this.getContentPane().add(hautpanel);
+        einlesentxt();
     }
 
     public void einlesentxt() {
