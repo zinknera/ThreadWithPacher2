@@ -29,12 +29,12 @@ public class Person_Hinzu extends javax.swing.JDialog {
         super(parent, modal);
 
         this.setSize(700, 400);
-        vn = new JTextField();
-        nn = new JTextField();
-        adresse = new JTextField();
-        geb = new JTextField();
-        mon = new JTextField();
-        gen = new JTextField();
+        vn = new JTextField("Sarah");
+        nn = new JTextField("Mustermann");
+        adresse = new JTextField("Grazerstraße 4");
+        geb = new JTextField("2000-01-01");
+        mon = new JTextField("100");
+        gen = new JTextField("Weiblich");
 
         JPanel hauptpanel = new JPanel();
         hauptpanel.setLayout(new java.awt.GridLayout(7, 2, 1, 1));
@@ -84,12 +84,12 @@ public class Person_Hinzu extends javax.swing.JDialog {
 
         //while (isOk == false) {
         try {
-            p = new Person(vn.getText(), nn.getText(), LocalDate.parse(geb.getText(), DateTimeFormatter.ISO_DATE).toString(), adresse.getText(), Double.parseDouble(mon.getText()));
+            p = new Person(vn.getText(), nn.getText(), geb.getText(), adresse.getText(), Double.parseDouble(mon.getText()));
             isOk = true;
             isKorrekt = true;
             dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Fehler!");
+            JOptionPane.showMessageDialog(null, ex);
         }
         //  }
 

@@ -24,7 +24,7 @@ public class Model_BL extends AbstractTableModel {
 
     private ArrayList<Person> liste = new ArrayList();
 
-    private static final String colNames[] = {"Vorname", "Nachname", "Geburtsdatum", "Adresse", "Geschlächt", "Money"};
+    private static final String colNames[] = {"Vorname", "Nachname", "Geburtsdatum", "Adresse", "Geschlecht", "Money"};
 
     public boolean add(Person p) {
         liste.add(p);
