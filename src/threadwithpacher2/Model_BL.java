@@ -6,9 +6,12 @@
 package threadwithpacher2;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,24 +55,24 @@ public class Model_BL extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
       Person p = liste.get(row);
       switch(col){
-          case 0: return "Sandra";// Person.getVorname();
-          case 1 : return "Vollmann";//Person.getNachname();
-          case 2 : return "1.1.2000";// Person.getGeb();
-          case 3 : return "Grazerstraße 2 ";//Person.getAdresse();
-          case 4 : return "Weiblich";//Person.getGender();
+          case 0: return p.getVn();
+          case 1 : return p.getNn();
+          case 2 : return p.getGebdate();
+          case 3 : return p.getAdresse();
+          case 4 : return p.get
       }
      throw new UnsupportedOperationException("Fehler: getValueAt ");
     }
     
     
-    public void einlesen(String paht){
-        if(paht != null){
+    public void einlesenTxt(String path){
+        if(path != null){
             String line="";
             try{
-                BufferedReader breader = new BufferedReader(new FileReader(paht));
+                BufferedReader breader = new BufferedReader(new FileReader(path));
                 while((line = breader.readLine())!=null){
                     String split[] = line.split(";");
-                    Person p = new Person(split[0],split[1],split[2],split[3],split[4]);
+                    Person p = new Person(split[0],split[1],split[2],split[3]);
                     liste.add(p);
                 }
             } catch (FileNotFoundException ex) {
@@ -77,10 +80,24 @@ public class Model_BL extends AbstractTableModel {
             } catch (IOException ex) {
                 Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+        }
+    }
+    
+    public void speichernTxt(String path){
+        if(path!=null){
+            try{
+                BufferedWriter bwriter = new BufferedWriter(new FileWriter(path));
+                for (int i = 0; i < liste.size(); i++) {
+                Person p = liste.get(i);
+                String line =p.getVn()+";"+p.getNn()+";"+p.getGebdate()+";"+g.get+";"+p.getAdresse();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             
         }
+        
     }
 
 }
