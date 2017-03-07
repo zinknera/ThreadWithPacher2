@@ -25,3 +25,4 @@ BlobbyProject/build/*
 BlobbyProject/test/*
 BlobbyProject/nbproject/private/*
 /BlobbyProject/dist/
+/build/

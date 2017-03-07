@@ -5,17 +5,33 @@
  */
 package threadwithpacher2;
 
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
 /**
  *
  * @author micha
  */
 public class GUI extends javax.swing.JFrame {
-
-    /**
-     * Creates new form GUI
-     */
+    
+    private JTable table;
+    private Model_BL model;
+    
     public GUI() {
-        initComponents();
+        this.setSize(500, 700);
+        model = new Model_BL();
+        JPanel hautpanel = new JPanel();
+        hautpanel.setLayout(new java.awt.BorderLayout());
+        table = new JTable();
+        JScrollPane scroll = new JScrollPane();
+        table.setModel(model);
+        scroll.setViewportView(table);
+        
+        hautpanel.add(scroll);
+        
+        getContentPane().add(hautpanel);
+        
     }
 
     /**
@@ -37,7 +53,7 @@ public class GUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 301, Short.MAX_VALUE)
         );
 
         pack();
