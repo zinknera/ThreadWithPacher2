@@ -5,15 +5,36 @@
  */
 package threadwithpacher2;
 
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author alex
  */
-public class SellRunnable implements Runnable{
+public class SellRunnable implements Runnable {
+
+    MoneyContainer moneyContainer;
+
+    public SellRunnable(MoneyContainer moneyContainer) {
+        this.moneyContainer = moneyContainer;
+    }
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Random rand = new Random();
+        while (true) {
+            synchronized (moneyContainer) {
+                moneyContainer.setMoney(moneyContainer.getMoney() + rand.nextDouble()*20);
+            }
+            System.out.println(super.getClass().getName() + "sell= " + moneyContainer.getMoney());
+            try {
+                Thread.sleep(900 + rand.nextInt(200));
+            } catch (InterruptedException ex) {
+                Logger.getLogger(SellRunnable.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
-    
+
 }

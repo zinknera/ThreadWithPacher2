@@ -7,20 +7,41 @@ package threadwithpacher2;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.crypto.SealedObject;
 
 /**
  *
  * @author micha
  */
 public class Person {
-    
+
     private String vn;
     private String nn;
     private LocalDate gebdate;
     private String adresse;
     MoneyContainer moneyContainer;
-
     private Gender gender;
+
+    private enum Gender {
+        MALE, FEMALE
+    }
+
+    public Person(String vn, String nn, String gebdate, String adresse, double money) {
+        this.vn = vn;
+        this.nn = nn;
+        this.gebdate = LocalDate.parse(gebdate, DateTimeFormatter.ISO_DATE);
+        this.adresse = adresse;
+        moneyContainer = new MoneyContainer(money);
+        
+        
+        Thread s1 = new Thread(new SellRunnable(moneyContainer));
+        s1.start();
+        
+        Thread b1 = new Thread(new BuyRunnable(moneyContainer));
+        b1.start();
+        
+        
+    }
 
     public Gender getGender() {
         return gender;
@@ -28,20 +49,6 @@ public class Person {
 
     public void setGender(Gender gender) {
         this.gender = gender;
-    }
-
-    
-    private enum Gender {
-        MALE, FEMALE
-    }
-    
-
-    public Person(String vn, String nn, String gebdate, String adresse, double money) {
-        this.vn = vn;
-        this.nn = nn;
-        this.gebdate = LocalDate.parse(gebdate, DateTimeFormatter.ISO_DATE);
-        this.adresse = adresse;
-        this.moneyContainer.setMoney(money);
     }
 
     public String getVn() {
@@ -76,8 +83,6 @@ public class Person {
         this.gebdate = gebdate;
     }
 
-   
-
     public String getAdresse() {
         return adresse;
     }
@@ -85,9 +90,5 @@ public class Person {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
-    
-    
-    
-    
-    
+
 }
