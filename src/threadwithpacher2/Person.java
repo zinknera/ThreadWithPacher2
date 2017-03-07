@@ -41,7 +41,7 @@ public class Person {
         this.nn = nn;
         this.gebdate = LocalDate.parse(gebdate, DateTimeFormatter.ISO_DATE);
         this.adresse = adresse;
-        this.moneyContainer.setMoney(money);
+        //this.moneyContainer.setMoney(money);
     }
 
     public String getVn() {
