@@ -26,6 +26,11 @@ public class Model_BL extends AbstractTableModel {
 
     private static final String colNames[] = {"Vorname", "Nachname", "Geburtsdatum", "Adresse", "Geschlächt", "Money"};
 
+    public boolean add(Person p) {
+        liste.add(p);
+        return true;
+    }
+
     @Override
     public int getRowCount() {
         return liste.size();
