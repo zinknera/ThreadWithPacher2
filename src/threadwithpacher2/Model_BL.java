@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -23,15 +25,32 @@ import javax.swing.table.AbstractTableModel;
 public class Model_BL extends AbstractTableModel {
 
     private ArrayList<Person> liste = new ArrayList();
+
+    private static final String colNames[] = {"Vorname", "Nachname", "Geburtsdatum", "Adresse", "Geschlächt", "Money"};
+    ChangeListener cl;
     
-   private static final String colNames[]={"Vorname","Nachname","Geburtsdatum","Adresse","Geschlächt"};
+    public Model_BL() {
+        cl = (evt) -> {
+            super.fireTableDataChanged();
+            System.out.println("asdhfjsahfdjashdfkjahsdfhdskjfhsajfhakjdshfjhfkjdshfdjfhasljf");
+        };
+        liste.forEach(p -> p.getMoneyContainer().addChangeListener(cl));
+    }
+    
+    
+
+    public boolean add(Person p) {
+        liste.add(p);
+        p.getMoneyContainer().addChangeListener(cl);
+        return true;
+    }
 
     @Override
     public int getRowCount() {
-       return liste.size();
+        return liste.size();
     }
-    
-    public String getColumnName(int i){
+
+    public String getColumnName(int i) {
         return colNames[i];
     }
 
@@ -47,31 +66,42 @@ public class Model_BL extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-      return colNames.length;
+        return colNames.length;
+    }
+
+    public void update() {
+        this.fireTableDataChanged();
+        this.fireTableCellUpdated(0, liste.size());
     }
 
     @Override
     public Object getValueAt(int row, int col) {
-      Person p = liste.get(row);
-      switch(col){
-          case 0: return p.getVn();
-          case 1 : return p.getNn();
-          case 2 : return p.getGebdate();
-          case 3 : return p.getAdresse();
-          case 4 : return p.getGender();
-      }
-     throw new UnsupportedOperationException("Fehler: getValueAt ");
+        Person p = liste.get(row);
+        switch (col) {
+            case 0:
+                return p.getVn();
+            case 1:
+                return p.getNn();
+            case 2:
+                return p.getGebdate();
+            case 3:
+                return p.getAdresse();
+            case 4:
+                return p.getGender();
+            case 5:
+                return p.getMoney();
+        }
+        throw new UnsupportedOperationException("Fehler: getValueAt ");
     }
-    
-    
-    public void einlesenTxt(String path){
-        if(path != null){
-            String line="";
-            try{
+
+    public void einlesenTxt(String path) {
+        if (path != null) {
+            String line = "";
+            try {
                 BufferedReader breader = new BufferedReader(new FileReader(path));
-                while((line = breader.readLine())!=null){
+                while ((line = breader.readLine()) != null) {
                     String split[] = line.split(";");
-                    Person p = new Person(split[0],split[1],split[2],split[3],Double.parseDouble(split[4]));
+                    Person p = new Person(split[0], split[1], split[2], split[3], Double.parseDouble(split[4]));
                     liste.add(p);
                 }
             } catch (FileNotFoundException ex) {
@@ -81,22 +111,21 @@ public class Model_BL extends AbstractTableModel {
             }
         }
     }
-    
-    public void speichernTxt(String path){
-        if(path!=null){
-            try{
+
+    public void speichernTxt(String path) {
+        if (path != null) {
+            try {
                 BufferedWriter bwriter = new BufferedWriter(new FileWriter(path));
                 for (int i = 0; i < liste.size(); i++) {
-                Person p = liste.get(i);
-                String line =p.getVn()+";"+p.getNn()+";"+p.getGebdate()+";"+p.getGender()+";"+p.getAdresse()+";" + p.getMoney();
+                    Person p = liste.get(i);
+                    String line = p.getVn() + ";" + p.getNn() + ";" + p.getGebdate() + ";" + p.getGender() + ";" + p.getAdresse() + ";" + p.getMoney();
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
+
         }
-        
+
     }
 
 }
