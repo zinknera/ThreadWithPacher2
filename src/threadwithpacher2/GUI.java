@@ -5,6 +5,7 @@
  */
 package threadwithpacher2;
 
+import java.io.File;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,10 +15,11 @@ import javax.swing.JTable;
  * @author micha
  */
 public class GUI extends javax.swing.JFrame {
-    
+
     private JTable table;
     private Model_BL model;
-    
+    private final String path = System.getProperty("user.dir") + File.separator + "src" + File.separator;
+
     public GUI() {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setSize(500, 700);
@@ -28,9 +30,13 @@ public class GUI extends javax.swing.JFrame {
         JScrollPane scroll = new JScrollPane();
         table.setModel(model);
         scroll.setViewportView(table);
-        
         hautpanel.add(scroll);
         getContentPane().add(hautpanel);
+    }
+
+    public void einlesentxt() {
+
+        model.einlesenTxt(path + "Personendaten.txt");
         
     }
 
