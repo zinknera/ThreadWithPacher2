@@ -29,10 +29,10 @@ public class BuyRunnable implements Runnable{
                 moneyContainer.setMoney(moneyContainer.getMoney() - rand.nextDouble()*20);
             }
             
-            System.out.println("buy= " + moneyContainer.getMoney());
+           // System.out.println("buy= " + moneyContainer.getMoney());
             
             try {
-                Thread.sleep(900 + rand.nextInt(200));
+                Thread.sleep(5700 + rand.nextInt(600));
             } catch (InterruptedException ex) {
                 Logger.getLogger(SellRunnable.class.getName()).log(Level.SEVERE, null, ex);
             }

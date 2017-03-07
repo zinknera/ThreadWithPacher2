@@ -28,7 +28,7 @@ public class SellRunnable implements Runnable {
             synchronized (moneyContainer) {
                 moneyContainer.setMoney(moneyContainer.getMoney() + rand.nextDouble()*20);
             }
-            System.out.println("sell= " + moneyContainer.getMoney());
+            //System.out.println("sell= " + moneyContainer.getMoney());
             try {
                 Thread.sleep(900 + rand.nextInt(200));
             } catch (InterruptedException ex) {

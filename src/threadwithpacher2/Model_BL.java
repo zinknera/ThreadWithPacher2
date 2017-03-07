@@ -33,7 +33,6 @@ public class Model_BL extends AbstractTableModel {
     public Model_BL() {
         cl = (evt) -> {
             super.fireTableDataChanged();
-            System.out.println("asdhfjsahfdjashdfkjahsdfhdskjfhsajfhakjdshfjhfkjdshfdjfhasljf");
         };
         liste.forEach(p -> p.getMoneyContainer().addChangeListener(cl));
     }
@@ -127,6 +126,28 @@ public class Model_BL extends AbstractTableModel {
 
         }
 
+    }
+    
+    void testdaten(String path) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String line;
+            String[] dataPeaces;
+            while((line = br.readLine())!= null){
+                dataPeaces = line.split("æ");
+                Person p = new Person(dataPeaces[0], dataPeaces[1], dataPeaces[2], dataPeaces[3], Double.parseDouble(dataPeaces[4]));
+                p.getMoneyContainer().addChangeListener(cl);
+                liste.add(p);
+            }
+           
+            update();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }
