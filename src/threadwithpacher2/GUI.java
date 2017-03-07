@@ -23,6 +23,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setSize(500, 700);
+        this.setLocationRelativeTo(null);
         model = new Model_BL();
         JPanel hautpanel = new JPanel();
         hautpanel.setLayout(new java.awt.BorderLayout());

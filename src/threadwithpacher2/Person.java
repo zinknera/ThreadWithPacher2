@@ -18,7 +18,7 @@ public class Person {
     private String nn;
     private LocalDate gebdate;
     private String adresse;
-    double money;
+    MoneyContainer moneyContainer;
 
     private Gender gender;
 
@@ -41,7 +41,7 @@ public class Person {
         this.nn = nn;
         this.gebdate = LocalDate.parse(gebdate, DateTimeFormatter.ISO_DATE);
         this.adresse = adresse;
-        this.money = money;
+        this.moneyContainer.setMoney(money);
     }
 
     public String getVn() {
@@ -53,11 +53,11 @@ public class Person {
     }
 
     public double getMoney() {
-        return money;
+        return moneyContainer.getMoney();
     }
 
     public void setMoney(double money) {
-        this.money = money;
+        this.moneyContainer.setMoney(money);
     }
 
     public String getNn() {
