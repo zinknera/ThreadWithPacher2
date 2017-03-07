@@ -31,17 +31,14 @@ public class GUI extends javax.swing.JFrame {
         table.setModel(model);
         scroll.setViewportView(table);
         hautpanel.add(scroll);
-<<<<<<< HEAD
-        getContentPane().add(hautpanel);
+
+        this.getContentPane().add(hautpanel);
     }
 
     public void einlesentxt() {
 
         model.einlesenTxt(path + "Personendaten.txt");
-=======
-        this.getContentPane().add(hautpanel);
->>>>>>> 3d03bdbc5b2fba86846bc97d9f0577cf72e71256
-        
+
     }
 
     /**
