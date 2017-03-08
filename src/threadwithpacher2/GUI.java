@@ -52,6 +52,7 @@ public class GUI extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 sichern(1);
+                
             }
         });
         JButton Laden = new JButton();

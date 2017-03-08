@@ -87,6 +87,7 @@ public class Model_BL extends AbstractTableModel {
                 BufferedReader breader = new BufferedReader(new FileReader(path));
                 while ((line = breader.readLine()) != null) {
                     String split[] = line.split(";");
+                    System.out.println(split[4]);
                     Person p = new Person(split[0], split[1], split[2], split[3], Double.parseDouble(split[4]));
                     liste.add(p);
                 }

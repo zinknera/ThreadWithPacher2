@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 public class Person_Hinzu extends javax.swing.JDialog {
 
     private JTextField vn, nn, adresse, geb, mon, gen;
-    private Person p;
+    private Person p = null;
     private boolean isKorrekt = false;
 
     public Person_Hinzu(java.awt.Frame parent, boolean modal) {
@@ -80,19 +80,16 @@ public class Person_Hinzu extends javax.swing.JDialog {
     }
 
     public void check() {
-        boolean isOk = false;
 
-        //while (isOk == false) {
         try {
-            p = new Person(vn.getText(), nn.getText(), geb.getText(), adresse.getText(), Double.parseDouble(mon.getText()));
-            isOk = true;
+            System.out.println(vn.getText());
+           // p = new Person(vn.getText(), nn.getText(), geb.getText(), adresse.getText(), "50");
+            p = new Person("Sarah", "Mustermann", "2000-01-01", "Grazerstraße 4", 50.00);
             isKorrekt = true;
             dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        //  }
-
     }
 
     public void exit() {
