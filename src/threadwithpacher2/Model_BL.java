@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -24,10 +26,22 @@ public class Model_BL extends AbstractTableModel {
 
     private ArrayList<Person> liste = new ArrayList();
 
+
     private static final String colNames[] = {"Vorname", "Nachname", "Geburtsdatum", "Adresse", "Geschlecht", "Money"};
+    ChangeListener cl;
+    
+    public Model_BL() {
+        cl = (evt) -> {
+            super.fireTableDataChanged();
+        };
+        liste.forEach(p -> p.getMoneyContainer().addChangeListener(cl));
+    }
+    
+    
 
     public boolean add(Person p) {
         liste.add(p);
+        p.getMoneyContainer().addChangeListener(cl);
         return true;
     }
 
@@ -106,6 +120,7 @@ public class Model_BL extends AbstractTableModel {
                 for (int i = 0; i < liste.size(); i++) {
                     Person p = liste.get(i);
                     String line = p.getVn() + ";" + p.getNn() + ";" + p.getGebdate() + ";" + p.getGender() + ";" + p.getAdresse() + ";" + p.getMoney();
+                    bwriter.write("test");
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,6 +128,28 @@ public class Model_BL extends AbstractTableModel {
 
         }
 
+    }
+    
+    void testdaten(String path) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String line;
+            String[] dataPeaces;
+            while((line = br.readLine())!= null){
+                dataPeaces = line.split("æ");
+                Person p = new Person(dataPeaces[0], dataPeaces[1], dataPeaces[2], dataPeaces[3], Double.parseDouble(dataPeaces[4]));
+                p.getMoneyContainer().addChangeListener(cl);
+                liste.add(p);
+            }
+           
+            update();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Model_BL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }

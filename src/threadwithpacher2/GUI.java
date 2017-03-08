@@ -7,23 +7,26 @@ package threadwithpacher2;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import jdk.nashorn.internal.parser.TokenType;
 
 /**
  *
  * @author micha
  */
 public class GUI extends javax.swing.JFrame {
-
+    
     private JTable table;
     private Model_BL model;
-    private final String path = System.getProperty("user.dir") + File.separator + "src" + File.separator;
-
+    private final String path = System.getProperty("user.dir") + File.separator + "src" +File.separator + "Data" + File.separator;
+    
     public GUI() {
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setSize(600, 700);
@@ -35,7 +38,7 @@ public class GUI extends javax.swing.JFrame {
         JScrollPane scroll = new JScrollPane();
         table.setModel(model);
         scroll.setViewportView(table);
-
+        
         JPanel setting = new JPanel();
         setting.setLayout(new java.awt.GridLayout(1, 2, 1, 1));
         JButton neuePerson = new JButton();
@@ -45,9 +48,9 @@ public class GUI extends javax.swing.JFrame {
                 PersonHinzu();
             }
         });
-
+        
         JButton Speichern = new JButton();
-
+        
         Speichern.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -56,38 +59,53 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         JButton Laden = new JButton();
-
+        
         Laden.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 sichern(2);
             }
         });
+        
+        JButton loadUselessData = new JButton("TestData");
+        
+        loadUselessData.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sichern(3);
+            }
+        });
         setting.add(Speichern);
         setting.add(Laden);
         setting.add(neuePerson);
+        setting.add(loadUselessData);
         Laden.setText("Daten laden");
         Speichern.setText("Daten speichern");
         neuePerson.setText("Neue Person erstellen");
-
+        
         hautpanel.add(setting, BorderLayout.NORTH);
         hautpanel.add(scroll, BorderLayout.CENTER);
         this.getContentPane().add(hautpanel);
-
+        
     }
-
+    
     public void sichern(int i) {
-        if (i == 1) {
-            model.speichernTxt(path + "Personendaten.txt");
+               
+        switch(i){
+            case 1: 
+                model.speichernTxt(path + "Personendaten.txt");
+                break;
+            case 2:
+                model.einlesenTxt(path + "Personendaten.txt");
+                break;
+            case 3:
+                model.testdaten(path + "Personen.txt");
         }
-        if (i == 2) {
-            model.einlesenTxt(path + "Personendaten.txt");
-
-        }
+        
     }
-
+    
     public void PersonHinzu() {
-
+        
         Person_Hinzu hinzu = new Person_Hinzu(this, true);
         hinzu.setVisible(true);
         if (hinzu.getIsKorrekt()) {
